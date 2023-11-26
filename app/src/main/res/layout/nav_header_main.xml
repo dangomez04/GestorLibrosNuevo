@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_header"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="#D4EFDF"
+     android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:layout_gravity="top"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    
+    <ImageView
+        android:id="@+id/nav_header_imageView"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@mipmap/ic_launcher_round"
+        />
+
+    <TextView
+        android:id="@+id/nav_header_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aclonica"
+        android:paddingTop="16dp"
+        android:text="Gestor de Libros Leídos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/nav_header_textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/aclonica"
+        android:paddingTop="5dp"
+        android:text="danielgomezgarciaaa@gmail.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+</LinearLayout>
