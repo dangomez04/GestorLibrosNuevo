@@ -7,18 +7,65 @@
     android:layout_marginTop="75dp"
     tools:context=".DeleteFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="164dp"
-        android:layout_height="107dp"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="251dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="298dp"
-        android:text="holajajajajja"
-        android:textSize="34sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="418dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="191dp"
+        android:background="#D4EFDF"
+        android:backgroundTint="#D4EFDF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/tituloBorrar"
+            android:layout_width="260dp"
+            android:layout_height="63dp"
+            android:layout_marginStart="79dp"
+            android:layout_marginTop="169dp"
+            android:layout_marginEnd="79dp"
+            android:layout_marginBottom="167dp"
+            android:ems="10"
+            android:hint="Titulo"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textBorrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="97dp"
+            android:layout_marginBottom="246dp"
+            android:text="Introduce el titulo del libro que deseas eliminar"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="159dp"
+            android:layout_marginTop="262dp"
+            android:layout_marginEnd="159dp"
+            android:layout_marginBottom="90dp"
+            android:backgroundTint="@color/black"
+            android:text="Eliminar"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

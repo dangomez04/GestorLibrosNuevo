@@ -27,18 +27,6 @@ lateinit var db : SQLiteDatabase
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recycler = view.findViewById(R.id.recycler)
 
-        var nuevoLibro1 = Libro(1,"La cabaña","Daniel Gómez","25-11-2023")
-        var nuevoLibro2 = Libro(2,"El lago","Javier Abril","12-05-2020")
-        var nuevoLibro3 = Libro(3,"La avispa","Joel Gallo","09-02-2017")
-        var nuevoLibro4 = Libro(4,"El amanecer","Carlos Nieto","06-07-2023")
-        var nuevoLibro5 = Libro(5,"El fin del mundo","Alejandro callejas","20-03-2021")
-
-        listaObjetos.add(nuevoLibro1)
-        listaObjetos.add(nuevoLibro2)
-        listaObjetos.add(nuevoLibro3)
-        listaObjetos.add(nuevoLibro4)
-        listaObjetos.add(nuevoLibro5)
-
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
 
