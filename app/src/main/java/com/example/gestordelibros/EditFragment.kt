@@ -27,11 +27,13 @@ private lateinit var tituloIntroEditar : EditText
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_edit, container, false)
+        //creamos dialogo
         CreateEditDialog(view)
         tituloNuevoIntro = view.findViewById(R.id.editTitulo)
         autorNuevoIntro = view.findViewById(R.id.editAutor)
         fechaNuevaIntro = view.findViewById(R.id.editFecha)
         fechaNuevaIntro.setOnClickListener{
+            //mostramos dialogo
             showDatePickerDialog()
 
     }
@@ -48,7 +50,8 @@ private lateinit var tituloIntroEditar : EditText
 
 
             val selection = "titulo LIKE ?"
-            val selectionArgs = arrayOf("${tituloIntroEditar.text.toString()}")
+            val selectionArgs = arrayOf("${tituloIntroEditar.text}")
+            //query para actualizar
             val count = db.update(
                 "libros",
                 values,
@@ -65,7 +68,7 @@ private lateinit var tituloIntroEditar : EditText
                     ?.replace(R.id.fragmentContainerView, HomeFragment())
                     ?.commit()
 
-                Toast.makeText(requireContext(),"Editado con exito!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"${tituloIntroEditar.text} Editado con exito!", Toast.LENGTH_SHORT).show()
 
             }
             db.close()
@@ -100,6 +103,7 @@ private lateinit var tituloIntroEditar : EditText
             val sortOrder = "id ASC"
 
             val selectionArgs = arrayOf(tituloIntroEditar.text.toString())
+            //query para obtener todos los campos del libro introducido
             val cursor = db.query(
                 "libros",   // The table to query
                 columnas,             // The array of columns to return (pass null to get all)
@@ -116,13 +120,23 @@ private lateinit var tituloIntroEditar : EditText
                      tituloEncontrado = getString(1)
                      autorEncontrado = getString(2)
                      fechaEncontrado = getString(3)
-                    println(getString(1))
+                    //pintar datos en los EditText
                  tituloNuevoIntro.setText(tituloEncontrado)
                     autorNuevoIntro.setText(autorEncontrado)
                     fechaNuevaIntro.setText(fechaEncontrado)
 
                 }
 
+            }
+
+
+            if(tituloIntroEditar.text.toString()==""){
+                Toast.makeText(requireActivity(),"No puedes dejar el campo vacio",Toast.LENGTH_SHORT).show()
+                CreateEditDialog(view)
+
+            }else if(tituloNuevoIntro.text.toString() == "" && autorNuevoIntro.text.toString() == "" && fechaNuevaIntro.text.toString()==""){
+                Toast.makeText(requireContext(),"El libro ${tituloIntroEditar.text} no existe, introduzca de nuevo un titulo", Toast.LENGTH_SHORT).show()
+                CreateEditDialog(view)
             }
             cursor.close()
             db.close()

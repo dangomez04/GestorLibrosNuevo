@@ -19,18 +19,23 @@ class confirmDialog(var tituloBorrar : EditText) :DialogFragment() {
 
                 val selection = "titulo LIKE ?"
                 val selectionArgs = arrayOf(tituloBorrar.text.toString())
+                //query para eliminar
                 val deletedRows = db.delete("libros", selection, selectionArgs)
-                tituloBorrar.setText("")
 
-                if(deletedRows == 0){
-                    Toast.makeText(requireActivity()," ${tituloBorrar.text.toString()} No existe",Toast.LENGTH_SHORT).show()
+                if(tituloBorrar.text.toString()==""){
+                    Toast.makeText(requireActivity(),"No puedes dejar el campo vacio",Toast.LENGTH_SHORT).show()
+
+                }else if(deletedRows == 0){
+                    Toast.makeText(requireActivity()," ${tituloBorrar.text} No existe, inserte de nuevo un libro",Toast.LENGTH_SHORT).show()
 
                 }else{
-                    Toast.makeText(requireActivity()," ${tituloBorrar.text.toString()} Borrado correctamente",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity()," ${tituloBorrar.text} Borrado correctamente",Toast.LENGTH_SHORT).show()
                     parentFragmentManager?.beginTransaction()
                         ?.replace(R.id.fragmentContainerView, HomeFragment())
                         ?.commit()
                 }
+                tituloBorrar.setText("")
+
                 db.close()
 
                 dialog.dismiss()

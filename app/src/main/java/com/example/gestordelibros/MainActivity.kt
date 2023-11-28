@@ -34,9 +34,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.title = "Inicio"
         val navigationView: NavigationView = findViewById(R.id.nav_view)
+        //le añadimos un listener a los items del navigation view
         navigationView.setNavigationItemSelectedListener{
             val transaction =
                 supportFragmentManager.beginTransaction()
+            // se navega entre fragmentos pasandole a mi condenedor de fragmentos el fragmento seleccionado.
             when(it.itemId){
                 R.id.nav_item_inicio -> {
                     supportActionBar?.title = "Inicio"
@@ -72,6 +74,8 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 }
+
+            //le permite al usuario volver a un estado anterior del fragmento presionando el botón Atrás
             transaction.addToBackStack(null);
             transaction.commit();
 

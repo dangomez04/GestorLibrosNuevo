@@ -11,13 +11,14 @@ class RecyclerViewAdapter (var listaObjetos : MutableList<Libro>) : RecyclerView
         val textTitulo : TextView = itemView.findViewById(R.id.textTitulo)
         val textAutor : TextView = itemView.findViewById(R.id.textAutor)
         val textFecha : TextView = itemView.findViewById(R.id.textFecha)
-
+        //recogemos variables del layout
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): RecyclerViewAdapter.ViewHolder {
+        //inflamos layout
         val view = LayoutInflater.from(parent.context).inflate(R.layout.libros, parent, false)
         return ViewHolder(view)
     }
@@ -26,6 +27,7 @@ class RecyclerViewAdapter (var listaObjetos : MutableList<Libro>) : RecyclerView
         holder.textTitulo.text = listaObjetos[position].titulo
         holder.textAutor.text = listaObjetos[position].autor
         holder.textFecha.text = listaObjetos[position].fecha
+        //asignamos valores
     }
 
     override fun getItemCount(): Int {

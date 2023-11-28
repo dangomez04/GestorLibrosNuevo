@@ -22,7 +22,6 @@ lateinit var db : SQLiteDatabase
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var listaObjetos = mutableListOf<Libro>()
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recycler = view.findViewById(R.id.recycler)
@@ -36,25 +35,11 @@ lateinit var db : SQLiteDatabase
         db = dbHelper.writableDatabase
 
 
-        for(i in listaObjetos){
-
-            val values = ContentValues().apply {
-                put("titulo", i.titulo)
-                put("autor", i.autor)
-                put("fecha", i.fecha)
-
-            }
-
-            val newRowId = db?.insert("libros", null, values)
-
-        }
-
-
-
 
         val projection = arrayOf("id", "titulo", "autor","fecha")
         val sortOrder = "id ASC"
 
+        //hago query que devuelve todos los libros
         val cursor = db.query(
             "libros",   // The table to query
             projection,             // The array of columns to return (pass null to get all)
@@ -64,7 +49,7 @@ lateinit var db : SQLiteDatabase
             null,                   // don't filter by row groups
             sortOrder               // The sort order
         )
-
+        //relleno mi lista con objetos de la clase libro
         var listaBbdd = mutableListOf<Libro>()
         with(cursor) {
             while (moveToNext()) {
@@ -79,7 +64,7 @@ lateinit var db : SQLiteDatabase
         }
         cursor.close()
         db.close()
-
+        //le paso mi lista al adapter del recycler view
         val adapter : RecyclerViewAdapter = RecyclerViewAdapter(listaBbdd)
         recycler.adapter = adapter
 

@@ -22,9 +22,9 @@ class DatePickerFragment(var fechaIntro : EditText) : DialogFragment(), DatePick
         val año = c.get(Calendar.YEAR)
         val mes = c.get(Calendar.MONTH)
         val dia = c.get(Calendar.DAY_OF_MONTH)
-
-        // Create a new instance of DatePickerDialog and return it
+        //para settear por defecto la fecha actual en el DatePicker
         var variable  = DatePickerDialog(requireActivity(), this, año, mes, dia)
+        //para no permitir al usuario ingresar una fecha superior a la presente
         variable.datePicker.maxDate = System.currentTimeMillis()
 
         return variable

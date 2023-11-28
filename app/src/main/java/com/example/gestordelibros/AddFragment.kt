@@ -37,33 +37,43 @@ class AddFragment : Fragment() {
             showDatePickerDialog()
         }
 
+
+
         buttonAñadir.setOnClickListener {
-            val id = idIntro.text.toString().toIntOrNull() ?: 0 // Obtiene el valor del campo ID, convierte a Int o usa 0 si no es válido
+            val id = idIntro.text.toString()
+            println(id)
             val titulo = tituloIntro.text.toString()
             val autor = autorIntro.text.toString()
             val fecha = fechaIntro.text.toString()
 
-            val values = ContentValues().apply {
-                put("id", id)
-                put("titulo", titulo)
-                put("autor", autor)
-                put("fecha", fecha)
+            if(id=="" || titulo =="" || autor == "" || fecha == ""){
+                Toast.makeText(requireContext(), "No puedes dejar campos vacios, intentelo de nuevo", Toast.LENGTH_SHORT).show()
+
+            }else{
+                val values = ContentValues().apply {
+                    put("id", id.toIntOrNull() ?: 0)
+                    put("titulo", titulo)
+                    put("autor", autor)
+                    put("fecha", fecha)
+                }
+
+                dbHelper = SqlHelper(requireContext())
+                db = dbHelper.writableDatabase
+                val newRowId = db?.insert("libros", null, values)
+
+                if (newRowId != -1L) {
+                    println(newRowId)
+                    Toast.makeText(requireContext(), "Libro agregado correctamente", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager?.beginTransaction()
+                        ?.replace(R.id.fragmentContainerView, HomeFragment())
+                        ?.commit()
+                } else {
+                    Toast.makeText(requireContext(), "Prueba a cambiar el id", Toast.LENGTH_SHORT).show()
+                }
+                db.close()
             }
 
-            dbHelper = SqlHelper(requireContext())
-            db = dbHelper.writableDatabase
-            val newRowId = db?.insert("libros", null, values)
 
-            if (newRowId != -1L) {
-                println(newRowId)
-                Toast.makeText(requireContext(), "Libro agregado correctamente", Toast.LENGTH_SHORT).show()
-                parentFragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragmentContainerView, HomeFragment())
-                    ?.commit()
-            } else {
-                Toast.makeText(requireContext(), "Prueba a cambiar el id", Toast.LENGTH_SHORT).show()
-            }
-            db.close()
 
         }
 
