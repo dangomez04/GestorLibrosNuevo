@@ -24,7 +24,10 @@ class DatePickerFragment(var fechaIntro : EditText) : DialogFragment(), DatePick
         val dia = c.get(Calendar.DAY_OF_MONTH)
 
         // Create a new instance of DatePickerDialog and return it
-        return DatePickerDialog(requireActivity(), this, año, mes, dia)
+        var variable  = DatePickerDialog(requireActivity(), this, año, mes, dia)
+        variable.datePicker.maxDate = System.currentTimeMillis()
+
+        return variable
     }
 
 
