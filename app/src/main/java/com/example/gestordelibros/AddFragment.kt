@@ -55,10 +55,15 @@ class AddFragment : Fragment() {
             val newRowId = db?.insert("libros", null, values)
 
             if (newRowId != -1L) {
+                println(newRowId)
                 Toast.makeText(requireContext(), "Libro agregado correctamente", Toast.LENGTH_SHORT).show()
+                parentFragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragmentContainerView, HomeFragment())
+                    ?.commit()
             } else {
-                Toast.makeText(requireContext(), "Error al agregar el libro", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Prueba a cambiar el id", Toast.LENGTH_SHORT).show()
             }
+            db.close()
 
         }
 

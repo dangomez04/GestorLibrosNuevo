@@ -30,9 +30,10 @@ class DatePickerFragment(var fechaIntro : EditText) : DialogFragment(), DatePick
 
 
     override fun onDateSet(view: DatePicker, año: Int, mes: Int, dia: Int) {
-            Toast.makeText(requireContext(),"$dia/$mes/$año", Toast.LENGTH_SHORT).show()
-            var fechaSeleccionada = "$dia/$mes/$año"
-            fechaIntro.setText(fechaSeleccionada)
+        val mesSumado = mes + 1
+        Toast.makeText(requireContext(), "$dia/$mesSumado/$año", Toast.LENGTH_SHORT).show()
+        var fechaSeleccionada = "$dia/$mesSumado/$año"
+        fechaIntro.setText(fechaSeleccionada)
     }
 
 

@@ -77,6 +77,8 @@ lateinit var db : SQLiteDatabase
             }
 
         }
+        cursor.close()
+        db.close()
 
         val adapter : RecyclerViewAdapter = RecyclerViewAdapter(listaBbdd)
         recycler.adapter = adapter
